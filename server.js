@@ -99,6 +99,6 @@ app.get('/data', function(req, res){
 
 
 
-app.listen('8082')
-console.log('Magic happens on port 8082');
+app.listen(process.env.PORT || 5000)
+console.log('Magic happens on port 5000');
 exports = module.exports = app;
