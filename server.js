@@ -4,9 +4,9 @@ var request = require('request');
 var cheerio = require('cheerio');
 var app     = express();
 
-app.get('/', function(req, res){
+app.get('/data', function(req, res){
     // The URL we will scrape from - in our example Anchorman 2.
-
+    console.log("request-------------------in  appscrapping------------")
     url = 'http://www.imdb.com/title/tt1229340/';
 
     // The structure of our request call
