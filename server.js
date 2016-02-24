@@ -4,6 +4,12 @@ var request = require('request');
 var cheerio = require('cheerio');
 var app     = express();
 
+app.get('/',function(req,res){
+    console.log("request get /---------------");
+
+    res.end("use /data url for get scrapping data")
+})
+
 app.get('/data', function(req, res){
     // The URL we will scrape from - in our example Anchorman 2.
     console.log("request-------------------in  appscrapping------------")
@@ -90,6 +96,8 @@ app.get('/data', function(req, res){
         res.send(outputJson)
     })
 })
+
+
 
 app.listen('8082')
 console.log('Magic happens on port 8082');
