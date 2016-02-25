@@ -7,7 +7,7 @@ var app     = express();
 app.get('/',function(req,res){
     console.log("request get /---------------");
 
-    res.end("use /imdb url for get scrapping data ------------------------------------------------------ use /apkpure for apps data")
+    res.end("Please use /apkpure url for app's data &  use /imdb url for imdb scrapping data")
 })
 
 app.get('/apkpure',function(req,res){
