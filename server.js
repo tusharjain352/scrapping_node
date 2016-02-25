@@ -22,7 +22,9 @@ app.get('/apkpure',function(req,res){
             var $ = cheerio.load(html);
             var parsedHTML = $.load(html)
             // Finally, we'll define the variables we're going to capture
-          
+            var title;
+            var json = { title : ""};
+
             $(".title-dd").each(function() {
                 var link = $(this);
                 //var text = link.text();
@@ -30,6 +32,14 @@ app.get('/apkpure',function(req,res){
                   str = str.replace(/ /g,'');
                   outputJson.push({"app" :str})
               });
+
+            $('.main').filter(function(){
+                var data = $(this);
+                title = data.text().trim();
+
+                json.title = title;
+            })
+            outputJson.push(json)
             res.send(outputJson)
         }else{
             res.send(error)
