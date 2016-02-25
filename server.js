@@ -7,10 +7,38 @@ var app     = express();
 app.get('/',function(req,res){
     console.log("request get /---------------");
 
-    res.end("use /data url for get scrapping data")
+    res.end("use /imdb url for get scrapping data ------------------------------------------------------ use /apkpure for apps data")
 })
 
-app.get('/data', function(req, res){
+app.get('/apkpure',function(req,res){
+    url = 'https://apkpure.com/';
+
+        request(url, function(error, response, html){
+
+        // First we'll check to make sure no errors occurred when making the request
+
+        if(!error){
+            var outputJson = [];
+            var $ = cheerio.load(html);
+            var parsedHTML = $.load(html)
+            // Finally, we'll define the variables we're going to capture
+          
+            $(".title-dd").each(function() {
+                var link = $(this);
+                //var text = link.text();
+                var str = link.text().replace(/\r?\n|\r/g, " ");
+                  str = str.replace(/ /g,'');
+                  outputJson.push({"app" :str})
+              });
+            res.send(outputJson)
+        }else{
+            res.send(error)
+        }
+
+        
+    })
+})
+app.get('/imdb', function(req, res){
     // The URL we will scrape from - in our example Anchorman 2.
     console.log("request-------------------in  appscrapping------------")
     url = 'http://www.imdb.com/title/tt1229340/';
@@ -88,12 +116,14 @@ app.get('/data', function(req, res){
                 story = data.text();
             })*/
             //console.log("json---",json)
+        outputJson = outputJson.concat(outputJson1); 
+        res.send(outputJson)
+        }else{
+            res.send(error)
         }
 
         // var finalRes=xmlToJson(html)
         // console.log("finalRes",finalRes)
-        outputJson = outputJson.concat(outputJson1); 
-        res.send(outputJson)
     })
 })
 
