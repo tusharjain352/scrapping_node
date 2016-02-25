@@ -35,8 +35,8 @@ app.get('/apkpure',function(req,res){
 
             $('.main').filter(function(){
                 var data = $(this);
-                title = data.text().trim();
-
+                title = data.text().replace(/\r?\n|\r/g, " ");
+                title = title.replace(/ /g,'');
                 json.title = title;
             })
             outputJson.push(json)
