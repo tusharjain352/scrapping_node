@@ -33,13 +33,6 @@ app.get('/apkpure',function(req,res){
                   outputJson.push({"app" :str})
               });
 
-            $('.main').filter(function(){
-                var data = $(this);
-                title = data.text().replace(/\r?\n|\r/g, " ");
-                title = title.replace(/ /g,'');
-                json.title = title;
-            })
-            outputJson.push(json)
             res.send(outputJson)
         }else{
             res.send(error)
@@ -64,17 +57,6 @@ app.get('/imdb', function(req, res){
         if(!error){
             // Next, we'll utilize the cheerio library on the returned html which will essentially give us jQuery functionality
             //console.log(html);
-            /*fs.writeFile("data.txt", html, function(err) {
-                if(err) {
-                    return console.log(err);
-                }else{
-                    console.log("The file was saved!");
-                }
-
-            }); */
-
-    
-
             var outputJson = [];
             var a =0;
             var $ = cheerio.load(html);
@@ -103,37 +85,12 @@ app.get('/imdb', function(req, res){
             })
             var title, release, rating,story;
             var json = { title : "", release : "", rating : "", story :""};
-
-
-            /*$('.title_wrapper').filter(function(){
-                var data = $(this);
-                title = data.children().first().text().trim();
-                release = data.children().last().children().last().text().trim();
-
-                json.title = title;
-                json.release = release;
-            })
-
-            $('.ratingValue').filter(function(){
-                var data = $(this);
-                rating = data.text().trim();
-
-                json.rating = rating;
-            })
-
-            $('.article').filter(function(){
-                var data = $(this);
-                story = data.text();
-            })*/
             //console.log("json---",json)
         outputJson = outputJson.concat(outputJson1); 
         res.send(outputJson)
         }else{
             res.send(error)
         }
-
-        // var finalRes=xmlToJson(html)
-        // console.log("finalRes",finalRes)
     })
 })
 
