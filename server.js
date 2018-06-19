@@ -9,7 +9,9 @@ app.get('/',function(req,res){
 
     res.end("Please use /apkpure url for app's data &  use /imdb url for imdb scrapping data")
 })
-
+app.get('/admin',(req,res)=>{
+  res.send('Hello Admin');
+})
 app.get('/apkpure',function(req,res){
     url = 'https://apkpure.com/';
 
