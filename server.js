@@ -3,7 +3,9 @@ var fs = require('fs');
 var request = require('request');
 var cheerio = require('cheerio');
 var app     = express();
+var path = require('path');
 
+app.use(express.static('./'));
 app.get('/',function(req,res){
     console.log("request get /---------------");
 
@@ -13,7 +15,8 @@ app.get('/admin',(req,res)=>{
   res.send('Hello Admin');
 })
 app.get('/apple-app-site-association',(req,res)=>{
-  res.send('Hello apple-app-site-association');
+  
+  res.sendfile(path.resolve('./apple-app-site-association'))
 })
 
 app.get('/apkpure',function(req,res){
