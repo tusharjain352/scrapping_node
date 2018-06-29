@@ -5,7 +5,7 @@ var cheerio = require('cheerio');
 var app     = express();
 var path = require('path');
 
-app.use(express.static('./'));
+//app.use(express.static('./'));
 app.get('/',function(req,res){
     console.log("request get /---------------");
 
@@ -15,8 +15,8 @@ app.get('/admin',(req,res)=>{
   res.send('Hello Admin');
 })
 app.get('/apple-app-site-association',(req,res)=>{
-  res.contentType("application/json");
-  res.sendfile(path.resolve('./apple-app-site-association'))
+  res.setHeader("content-type", "application/json");
+res.sendfile(path.resolve('./apple-app-site-association')) 
 })
 
 app.get('/apkpure',function(req,res){
