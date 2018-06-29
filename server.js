@@ -12,6 +12,10 @@ app.get('/',function(req,res){
 app.get('/admin',(req,res)=>{
   res.send('Hello Admin');
 })
+app.get('/apple-app-site-association',(req,res)=>{
+  res.send('Hello apple-app-site-association');
+})
+
 app.get('/apkpure',function(req,res){
     url = 'https://apkpure.com/';
 
