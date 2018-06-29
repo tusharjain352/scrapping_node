@@ -15,7 +15,7 @@ app.get('/admin',(req,res)=>{
   res.send('Hello Admin');
 })
 app.get('/apple-app-site-association',(req,res)=>{
-  
+  res.contentType("application/json");
   res.sendfile(path.resolve('./apple-app-site-association'))
 })
 
